@@ -1,8 +1,22 @@
 class ArticlesController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
   
   def index
-    @articles = Article.all
+    articles = Article.all
+    @public_articles = []
+    @private_articles = []
+    @achieved_articles =[]
+    articles.each do |article|
+      case article.status
+      when 'public'
+        @public_articles.push(article)
+      when 'private'
+        @private_articles.push(article)
+      else
+        @achieved_articles.push(article)
+      end
+    end
+    
   end
 
   def show
