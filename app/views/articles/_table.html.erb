@@ -1,22 +1,26 @@
 <h4><%= title %></h4>
+
 <table class="table table-striped">
   <tbody>
     <% articles.each do |article| %>
     <tr class="row">
       <td class="col-xs-6 col-md-6"> <%= link_to article.title, article %></td>
       <td class="col-xs-6 col-md-2">
-        <%= check_box_tag(:status, 1, article.public?) %>
+        <%= check_box_tag(:status, [ article.id, 'public' ], article.public?, id:'status_id') %>
         <%= label_tag(:status, "Public") %>
       </td>
       <td class="col-xs-6 col-md-2">
-        <%= check_box_tag(:status, 1, article.private?) %>
+        <%= check_box_tag(:status, [ article.id, 'private' ], article.private?, id:'status_id') %>
         <%= label_tag(:status, "Private") %>
       </td>
       <td class="col-xs-6 col-md-2">
-        <%= check_box_tag(:status, 1, article.archived?) %>
+        <%= check_box_tag(:status, [ article.id, 'archived' ], article.archived?, id:'status_id') %>
         <%= label_tag(:status, "Archived") %>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
+
+<!--Load specific javascript file-->
+<%= javascript_pack_tag 'custom/ajax_article_status', 'data-turbolinks-track': 'reload' %>

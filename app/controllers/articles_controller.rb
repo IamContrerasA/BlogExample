@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   #http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  #skip_before_action :verify_authenticity_token #in case csrf token not work
   
   def index
     articles = Article.all
@@ -56,6 +57,19 @@ class ArticlesController < ApplicationController
     @article.destroy
 
     redirect_to root_path
+  end
+
+  ######################### Custom methods #################
+  
+  def update_status
+    @article = Article.find(params[:id])
+    respond_to do |format|
+      if @article.update({status: params[:type]})
+        format.json { render json: {'resultado': 'ok' } }
+      else
+        format.json { render json: {'resultado': 'fail' } }
+      end
+    end
   end
 
   private

@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
   end
+
+  #single routes
+  post "/articles/update_status", to: "articles#update_status"
   
 end
