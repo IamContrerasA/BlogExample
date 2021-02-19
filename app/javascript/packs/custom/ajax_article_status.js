@@ -21,9 +21,13 @@
             location.reload();
           }
         });
-      }else{
+      }
+      if(state.checked === false){
+        state.checked = true;
+      }
+      else{
         state.checked = false;
-      }     
+      }        
     }
   })
   
