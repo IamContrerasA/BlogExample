@@ -2,15 +2,18 @@
 
 <p><%= @article.body %></p>
 
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-</ul>
+<%= link_to "Edit", edit_article_path(@article), class: "btn btn-warning" %>
+<%= link_to "Destroy", article_path(@article),
+            method: :delete,
+            data: { confirm: "Are you sure?" }, 
+            class: "btn btn-danger" %>
 
-<h2>Comments</h2>
-<%= render @article.comments %>
+<div class='p-3 my-3 border'>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+  <h4>Comments</h4>
+  <%= render @article.comments %>
+
+  <h5>Add a comment:</h5>
+  <%= render 'comments/form' %>
+
+</div>
