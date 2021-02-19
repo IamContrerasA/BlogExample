@@ -2,21 +2,8 @@
 
 Our blog has <%= Article.public_count %> public articles and counting! <%= @extra_title%>
 
-<ul class="list-group">
-  <h4>Public Articles</h4>
-  <% @public_articles.each do |article| %>
-    <li class="list-group-item"> <%= link_to article.title, article %> </li>
-  <% end %>
-
-  <h4>Private Articles</h4>
-  <% @private_articles.each do |article| %>
-    <li class="list-group-item"> <%= link_to article.title, article %> </li>
-  <% end %>
-
-  <h4>Achieved Articles</h4>
-  <% @achieved_articles.each do |article| %>
-    <li class="list-group-item"> <%= link_to article.title, article %> </li>
-  <% end %>
-</ul>
-
+<%= render "table", articles: @public_articles, title: 'Public Articles' %>
+<%= render "table", articles: @private_articles, title: 'Private Articles' %>
+<%= render "table", articles: @achieved_articles, title: 'Archived Articles' %>
+  
 <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
