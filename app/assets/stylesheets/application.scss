@@ -24,3 +24,19 @@ h4, h1 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-gap: 10px;
+  color: #444;
+}
+
+.box {
+  background-color: #444;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}

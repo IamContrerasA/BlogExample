@@ -10,12 +10,61 @@
 
 <div class='p-3 my-3 border'>
 
-  <h4>Comments</h4>
+  <h4>Comments with boostrap card</h4>
   <%= render @article.comments %>
   
   <button class='btn btn-success' onclick="hideFunction()">Add a comment</button>  
 
   <div id='hideComponent' style="display:none;">
     <%= render 'comments/form' %>
+  </div>
+</div>
+
+<h4>Comments with personal grid css layout</h4>
+<div class="wrapper container">
+  <% @article.comments.each do |comment| %>
+    <% if comment.id %>
+      <div class="box <%= comment.id%>">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title"><%= comment.commenter %> </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= comment.body %></p>
+            <%= link_to 'Destroy Comment', [comment.article, comment],
+                        method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        class: "btn btn-danger" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<h4>Comments with bootstrap grid</h4>
+<div class="container">
+  <div class="row">
+    <% @article.comments.each.with_index do |comment, index| %>
+      <% if comment.id %>
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-title"><%= comment.commenter %> </h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text"><%= comment.body %></p>
+              <%= link_to 'Destroy Comment', [comment.article, comment],
+                          method: :delete,
+                          data: { confirm: "Are you sure?" },
+                          class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% if index % 3 == 2%>
+        <div class="w-100"></div>
+      <% end %>  
+    <% end %>
   </div>
 </div>
